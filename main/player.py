@@ -6,9 +6,6 @@ class Player:
         # Set player id
         self.player_id = player_id
         
-        with open('main/id_to_champ.txt') as json_file:
-            id_to_champ = json.load(json_file)
-   
         # Initialize player info
         self.info = {}
 
