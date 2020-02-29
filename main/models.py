@@ -5,7 +5,7 @@ class Summoner(models.Model):
 
 
 class Match(models.Model):
-    summoners = models.ManyToManyField(Publication)
+    summoners = models.ManyToManyField(Summoner)
 
     match_id = models.BigIntegerField()
     date = models.DateField()
