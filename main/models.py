@@ -1,7 +1,7 @@
 from django.db import models
 
 class Summoner(models.Model):
-    summoner_name = models.CharField()
+    summoner_name = models.CharField(max_length=30)
 
 
 class Match(models.Model):
