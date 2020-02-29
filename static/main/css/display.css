@@ -1,0 +1,14 @@
+td {
+  padding-left: 25px;
+  padding-right: 25px;
+  height: 40px;
+  text-align:left
+}
+
+div.MatchEntry{
+	vertical-align: top;
+	max-height: 100%;
+	display:table-header-group;
+  float:left;
+  padding-left: 1cm;
+}
