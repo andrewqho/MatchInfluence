@@ -28,15 +28,15 @@ class Player(models.Model):
     )
 
     player_id = models.IntegerField()
-    summoner_name = models.CharField()
-    champion_name = models.CharField()
+    summoner_name = models.CharField(max_length=30)
+    champion_name = models.CharField(max_length=30)
     
 
     # Info
     kills_actual = models.IntegerField()
     deaths_actual = models.IntegerField()
     assists_actual = models.IntegerField()
-    kda = models.CharField()
+    kda = models.CharField(max_length=10)
 
     # Factors
     kills = models.IntegerField()
