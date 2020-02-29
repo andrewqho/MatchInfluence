@@ -42,7 +42,7 @@ class Player:
         self.score = math.pow(self.score, 1.25)
 
     def serialize(self):
-        with open('main/id_to_champ.txt') as json_file:
+        with open('main/static/id_to_champ.txt') as json_file:
             id_to_champ = json.load(json_file)
 
         player_dict = {}

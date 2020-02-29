@@ -1,7 +1,5 @@
 from django.http import HttpResponse
-
 from django.shortcuts import render
-
 from django.template import loader
 
 from urllib.parse import quote, unquote
@@ -12,7 +10,7 @@ import sys
 APIKey = 'RGAPI-348fb156-b305-45b1-9c03-fee4763b1d30'
 
 def verify(request):
-    f = open('main/riot.txt', 'r')
+    f = open('main/static.riot.txt', 'r')
     file_content = f.read()
     f.close()
     return HttpResponse(file_content, content_type="text/plain")
