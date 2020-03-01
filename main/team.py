@@ -94,7 +94,7 @@ class Team:
 
         team_entry.save()
 
-        for player_id, player in self.players:
+        for player_id, player in self.players.items():
             player.save_entry(team_entry)
 
 # Code by Andrew Ho, Caltech 21'
