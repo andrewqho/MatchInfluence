@@ -10,7 +10,7 @@ from main.models import Match_model
 class Match:
     def __init__(self, match_id, raw_match_data, timestamp):
         self.match_id = match_id
-        self.date = datetime.fromtimestamp(timestamp/1000.0)
+        self.match_date = datetime.fromtimestamp(timestamp/1000.0)
 
         # Get match data
         self.match_data = raw_match_data
@@ -106,7 +106,7 @@ class Match:
     def save_entry(self):
         match_entry = Match_model(
             match_id=self.match_id,
-            match_date=self.date,
+            match_date=self.match_date,
             match_duration=self.match_duration
             )
 

@@ -24,7 +24,7 @@
             {% for match_id, match in matches.items%}
             <div class="MatchEntry">
 		<a href="http://159.89.232.189/match/{{match_id}}"><h2>Match {{ match_id }}</h2></a>
-		<h3>{{ match.match_time }}</h3>
+		<h3>{{ match.match_date }}</h3>
         <h3>Match duration: {{ match.match_duration }}</h3>
                 {% for team_id, team in match.teams.items%}
                 <div>                    

@@ -5,8 +5,8 @@ class Summoner_model(models.Model):
 
 class Match_model(models.Model):
     match_id = models.BigIntegerField()
-    date = models.DateField()
-    duration = models.DurationField()
+    match_date = models.DateField()
+    match_duration = models.DurationField()
 
 class Team_model(models.Model): 
     # Every team belongs to a match
