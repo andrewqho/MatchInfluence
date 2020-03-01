@@ -41,7 +41,7 @@ def matchHistory(request, summoner_name, num_matches=20):
         timestamp = match['timestamp']
        
         try:
-            match_entry = Match_model.get(match_id=match_id)
+            match_entry = Match_model.objects.get(match_id=match_id)
         except:
             raw_match_data = fetcher.requestMatchDetails(match_id)
             new_match = Match(match_id, raw_match_data, timestamp)
