@@ -101,7 +101,7 @@ class Match:
     def runCalculations(self):
         # Calculate scores
         for team_id, team in self.teams.items():
-            team.calculatePlayerScores(self.match_duration)
+            team.calculatePlayerMatchInfluences(self.match_duration)
 
     def save_entry(self):
         match_entry = Match_model(
