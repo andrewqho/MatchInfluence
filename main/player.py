@@ -1,6 +1,8 @@
 import math
 import json
 
+from main.models import Player
+
 class Player:
     def __init__(self, player_id):
         # Set player id
@@ -60,3 +62,9 @@ class Player:
         player_dict['score'] = round(self.score*100, 3)
 
         return player_dict
+
+    def serialize_todo(self):
+        with open('main/assets/id_to_champ.txt') as json_file:
+            id_to_champ = json.load(json_file)
+
+

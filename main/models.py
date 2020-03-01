@@ -3,7 +3,6 @@ from django.db import models
 class Summoner(models.Model):
     summoner_name = models.CharField(max_length=30)
 
-
 class Match(models.Model):
     summoners = models.ManyToManyField(Summoner)
 
@@ -19,7 +18,22 @@ class Team(models.Model):
     )
 
     team_id = models.CharField(max_length=4)
-    
+    total_score = models.DecimalField(max_digits=10, decimal_places=2)
+    win = models.BooleanField()
+
+    ban1 = models.CharField(max_length=30)
+    ban2 = models.CharField(max_length=30)
+    ban3 = models.CharField(max_length=30)
+    ban4 = models.CharField(max_length=30)
+    ban5 = models.CharField(max_length=30)
+
+    dragons_killed = models.IntegerField()
+    barons_killed = models.IntegerField()
+    heralds_killed = models.IntegerField()
+    towers_killed = models.IntegerField()
+    inhibs_killed = models.IntegerField()
+
+
 class Player(models.Model):
     # Each player belongs to a team
     team = models.ForeignKey(
