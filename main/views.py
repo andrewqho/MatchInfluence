@@ -45,7 +45,7 @@ def summonerSummary(request, summoner_name, num_matches=20):
         match_order.append(match_id)
 
         new_match.runCalculations()
-
+        peepeepoopoo
     summoner_data = {'matches': {}}
 
     summoner_data['num_matches'] = num_matches
