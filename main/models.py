@@ -1,19 +1,17 @@
 from django.db import models
 
-class Summoner(models.Model):
+class Summoner_model(models.Model):
     summoner_name = models.CharField(max_length=30)
 
-class Match(models.Model):
-    summoners = models.ManyToManyField(Summoner)
-
+class Match_model(models.Model):
     match_id = models.BigIntegerField()
     date = models.DateField()
     duration = models.DurationField()
 
-class Team(models.Model): 
+class Team_model(models.Model): 
     # Every team belongs to a match
     match = models.ForeignKey(
-        'Match',
+        'Match_model',
         on_delete=models.CASCADE,
     )
 
@@ -21,11 +19,11 @@ class Team(models.Model):
     total_score = models.DecimalField(max_digits=10, decimal_places=2)
     win = models.BooleanField()
 
-    ban1 = models.CharField(max_length=30)
-    ban2 = models.CharField(max_length=30)
-    ban3 = models.CharField(max_length=30)
-    ban4 = models.CharField(max_length=30)
-    ban5 = models.CharField(max_length=30)
+    # ban1 = models.CharField(max_length=30)
+    # ban2 = models.CharField(max_length=30)
+    # ban3 = models.CharField(max_length=30)
+    # ban4 = models.CharField(max_length=30)
+    # ban5 = models.CharField(max_length=30)
 
     dragons_killed = models.IntegerField()
     barons_killed = models.IntegerField()
@@ -34,10 +32,10 @@ class Team(models.Model):
     inhibs_killed = models.IntegerField()
 
 
-class Player(models.Model):
+class Player_model(models.Model):
     # Each player belongs to a team
     team = models.ForeignKey(
-        'Team',
+        'Team_model',
         on_delete=models.CASCADE,
     )
 
@@ -74,3 +72,5 @@ class Player(models.Model):
     
     # Match Influence Score
     match_influence = models.DecimalField(max_digits=10, decimal_places=2)
+
+# Code by Andrew Ho, Caltech 21'

@@ -5,15 +5,17 @@ import json
 import math
 from datetime import datetime
 
+from main.models import Match_model
+
 class Match:
     def __init__(self, match_id, raw_match_data, timestamp):
         self.match_id = match_id
-        self.match_time = datetime.fromtimestamp(timestamp/1000.0)
+        self.date = datetime.fromtimestamp(timestamp/1000.0)
 
         # Get match data
         self.match_data = raw_match_data
 
-        self.game_duration = self.match_data['gameDuration']/60
+        self.match_duration = self.match_data['gameDuration']/60
 
         self.teams = self.populateTeamsData()
         
@@ -94,10 +96,6 @@ class Match:
 
             teams[team_id].setPlayerName(playerID, new_player_name)
 
-        # Rescale factors
-        #for team_id, team in teams.items():
-        #    team.rescalePlayerFactors()
-
         return teams
 
     def runCalculations(self):
@@ -105,15 +103,19 @@ class Match:
         for team_id, team in self.teams.items():
             team.calculatePlayerScores(self.game_duration)
 
-    def serialize(self):
-        match_dict = {'teams':{}}
+    def save_entry(self):
+        match_entry = Match_model(
+            match_id=self.match_id,
+            match_date=self.date,
+            match_duration=self.match_duration
+            )
 
-        match_dict['match_id'] = self.match_id
-        match_dict['game_duration'] = self.game_duration
-        match_dict['match_time'] = self.match_time
-        
-        match_dict['teams']['Red'] = self.teams['Red'].serialize()
-        match_dict['teams']['Blue'] = self.teams['Blue'].serialize()
-        
-        return match_dict
+        match_entry.save()
 
+        self.teams['Blue'].save_entry(match_entry)
+        self.teams['Red'].save_entry(match_entry)
+
+
+
+
+# Code by Andrew Ho, Caltech 21'

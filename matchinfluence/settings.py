@@ -128,3 +128,6 @@ STATICFILES_DIRS = [
     # '/var/www/static/',
 ]
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+
+# Code by Andrew Ho, Caltech 21'

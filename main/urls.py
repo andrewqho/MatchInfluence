@@ -19,7 +19,9 @@ from main import views
 
 urlpatterns = [
 	path('riot.txt/', views.verify, name = 'verify'),
-        re_path(r'^summoner/(?P<summoner_name>[\w|\W]+)/', views.summonerSummary, name = 'summoner_summary'),	
+        re_path(r'^summoner/(?P<summoner_name>[\w|\W]+)/', views.matchHistory, name = 'summoner_summary'),	
         re_path(r'^match/(?P<match_id>[0-9]{10})/', views.matchDetails, name = 'match_details'),
         path('', views.search, name = 'search'),
 ]
+
+# Code by Andrew Ho, Caltech 21'

@@ -23,3 +23,5 @@ urlpatterns = [
     path('', include('main.urls')),
     path('admin/', admin.site.urls),
 ]
+
+# Code by Andrew Ho, Caltech 21'

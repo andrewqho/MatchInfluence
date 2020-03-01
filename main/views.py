@@ -7,6 +7,8 @@ from main.fetcher import Fetcher
 from main.match import Match
 import sys
 
+from main.models import Match_model
+
 APIKey = 'RGAPI-972d9b2d-544b-4eca-ad4f-ed2a6d459fb1'
 
 def verify(request):
@@ -21,7 +23,7 @@ def search(request):
 def matchDetails(request, match_id):
     return render(request, 'search.html')
 
-def summonerSummary(request, summoner_name, num_matches=20):
+def matchHistory(request, summoner_name, num_matches=20):
     fetcher = Fetcher(APIKey)
 
     # Request summoner data
@@ -34,24 +36,23 @@ def summonerSummary(request, summoner_name, num_matches=20):
 
     # Parse match history data
     matches = {}
-    match_order = []
     for match in raw_match_history['matches']:
         match_id = match['gameId']
         timestamp = match['timestamp']
-        raw_match_data = fetcher.requestMatchDetails(match_id)
-        new_match = Match(match_id, raw_match_data, timestamp)
+       
+        try:
+            match_entry = Match_model.get(match_id=match_id)
+        except:
+            raw_match_data = fetcher.requestMatchDetails(match_id)
+            new_match = Match(match_id, raw_match_data, timestamp)
+            new_match.runCalculations()
+            new_match.save_entry()
 
-        matches[match_id] = new_match
-        match_order.append(match_id)
+            match_entry = Match_model.get(match_id=match_id)
 
-        new_match.runCalculations()
+        matches[match_id] = match_entry
 
-    summoner_data = {'matches': {}}
-
-    summoner_data['num_matches'] = num_matches
-    for match_id, match in matches.items():
-        summoner_data['matches'][match_id] = match.serialize()
-
-    return render(request, 'summary.html', summoner_data)
+    return render(request, 'summary.html', {'num_matches': num_matches, 'matches': matches})
 
 
+# Code by Andrew Ho, Caltech 21'

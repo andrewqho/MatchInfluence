@@ -1,3 +1,5 @@
+from main.models import Team_model
+
 class Team:
     def __init__(self, team_id):
         self.team_id = team_id
@@ -76,12 +78,23 @@ class Team:
                 for player_id, player in self.players.items():
                     player.metrics[metric] = player.metrics[metric] / total
 
-    def serialize(self):
-        team_dict = {'players':{}}
-        team_dict['team_id'] = self.team_id
-        team_dict['total_score'] = self.total_score
+    def save_entry(self, match_obj):
 
-        for player_id, player in self.players.items():
-            team_dict['players'][player_id] = player.serialize()
+        team_entry = Team_model(
+            match=match_obj,
+            team_id=self.team_id,
+            total_score=self.total_score,
+            win=self.info['win'],
+            dragons_killed=self.info['dragons_killed'],
+            barons_killed=self.info['dragons_killed'],
+            heralds_killed=self.info['heralds_killed'],
+            towers_killed=self.info['towers_killed'],
+            inhibs_killed=self.info['inhibs_killed']
+        )
 
-        return team_dict
+        team_entry.save()
+
+        for player_id, player in self.players:
+            player.save_entry(team_entry)
+
+# Code by Andrew Ho, Caltech 21'
