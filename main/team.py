@@ -7,8 +7,8 @@ class Team:
         # Store player information
         self.players = {}
 
-        # Store total team score
-        self.total_score = 0 
+        # Store total team match influence
+        self.total_match_influence = 0 
 
         # Store team information
         self.info = {}
@@ -35,7 +35,7 @@ class Team:
     def setPlayerName(self, player_id, summoner_name):
         self.players[player_id].summoner_name = summoner_name
 
-    def calculatePlayerScores(self, match_duration):
+    def calculatePlayerMatchInfluences(self, match_duration):
         for player_id, player in self.players.items():
             player.calculateMetrics(match_duration)
 
@@ -45,12 +45,12 @@ class Team:
 
         # Calculate scores
         for player_id, player in self.players.items():
-            player.calculateScore()
-            self.total_score += player.score
+            player.calculateMatchInfluence()
+            self.total_match_influence += player.match_influence
 
         # Normalize scores
         for player_id, player in self.players.items():
-            player.score = player.score/self.total_score
+            player.match_influence = player.match_influence/self.total_match_influence
 
     def rescalePlayerFactors(self):
         for factor in self.factors:
@@ -83,7 +83,7 @@ class Team:
         team_entry = Team_model(
             match=match_obj,
             team_id=self.team_id,
-            total_score=self.total_score,
+            total_match_influence=self.total_match_influence,
             win=self.info['win'],
             dragons_killed=self.info['dragons_killed'],
             barons_killed=self.info['dragons_killed'],

@@ -28,14 +28,12 @@ class Player:
         self.metrics['objectives'] = math.log(match_duration, 15)*(self.factors['turret_damage'] + self.factors['turrets_killed'] + self.factors['objective_damage'])
         self.metrics['support'] = (math.pow(self.factors['CC_given'], 2) + math.pow(self.factors['vision_score'],2.85) + 0.5*self.factors["kills"] + 1.5*self.factors["assists"])/ (2 + 3 * (self.factors['deaths']))
         
-    def calculateScore(self):
+    def calculateMatchInfluence(self):
         metric_scores = []
         self.match_influence += math.pow(1+self.metrics['carry'], 3)
         self.match_influence += math.pow(1+self.metrics['tank'], 2)
         self.match_influence += math.pow(1+self.metrics['objectives'], 1.5)
         self.match_influence += math.pow(1+self.metrics['support'], 1.75)
-        # for metric_id, metric_score in self.metrics.items():
-        #     self.score += math.pow(0.5+metric_score,3)
 
         self.match_influence = math.pow(self.match_influence, 1.25)
 
