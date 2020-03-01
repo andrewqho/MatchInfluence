@@ -15,7 +15,7 @@ class Match:
         # Get match data
         self.match_data = raw_match_data
 
-        self.match_duration = self.match_data['gameDuration']/60
+        self.match_duration = float(self.match_data['gameDuration']/60)
 
         self.teams = self.populateTeamsData()
         
