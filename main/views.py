@@ -48,7 +48,7 @@ def matchHistory(request, summoner_name, num_matches=20):
             new_match.runCalculations()
             new_match.save_entry()
 
-            match_entry = Match_model.get(match_id=match_id)
+            match_entry = Match_model.objects.get(match_id=match_id)
 
         matches[match_id] = match_entry
 
