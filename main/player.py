@@ -22,10 +22,10 @@ class Player:
         # Set summoner name
         self.summoner_name = None
 
-    def calculateMetrics(self, game_duration): 
+    def calculateMetrics(self, match_duration): 
         self.metrics['carry'] = (( (1.5*self.factors['kills']+0.5*self.factors['assists']) ) * (self.factors['champ_damage'])) / (2 + 4 * (self.factors['deaths']))
         self.metrics['tank'] = (self.factors['damage_taken'] * self.factors['damage_mitigated']) / (2 + 2*(self.factors['deaths']))
-        self.metrics['objectives'] = math.log(game_duration, 15)*(self.factors['turret_damage'] + self.factors['turrets_killed'] + self.factors['objective_damage'])
+        self.metrics['objectives'] = math.log(match_duration, 15)*(self.factors['turret_damage'] + self.factors['turrets_killed'] + self.factors['objective_damage'])
         self.metrics['support'] = (math.pow(self.factors['CC_given'], 2) + math.pow(self.factors['vision_score'],2.85) + 0.5*self.factors["kills"] + 1.5*self.factors["assists"])/ (2 + 3 * (self.factors['deaths']))
         
     def calculateScore(self):

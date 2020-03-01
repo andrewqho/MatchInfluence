@@ -35,9 +35,9 @@ class Team:
     def setPlayerName(self, player_id, summoner_name):
         self.players[player_id].summoner_name = summoner_name
 
-    def calculatePlayerScores(self, game_duration):
+    def calculatePlayerScores(self, match_duration):
         for player_id, player in self.players.items():
-            player.calculateMetrics(game_duration)
+            player.calculateMetrics(match_duration)
 
         #Rescale metrics
         for metric in self.metrics:
