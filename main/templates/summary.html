@@ -7,24 +7,24 @@
     </head>
     <body>
         <div id="header">
-	    <a href="http://159.89.232.189/"><h1>Match Influence Calculator</h1></a>
+        <a href="http://159.89.232.189/"><h1>Match Influence Calculator</h1></a>
         </div>
         <div id="search">
             <p>Enter Summoner Name:</p>
             <form action="/summoner/" method="post" accept-charset="utf-8" onsubmit="this.action+=this.querySelector('input[type=text]'+="/").value">
                 {% csrf_token %}
-		<input type="text" name="summoner_name">
+        <input type="text" name="summoner_name">
                 <input type="submit" value="Enter">
         </form>
         </div>
-	<div class="PlayerSummary">
-		
-	</div>
+        <div class="PlayerSummary">
+            
+        </div>
         <div class="Matches">
             {% for match_id, match in matches.items%}
             <div class="MatchEntry">
-		        <a href="http://159.89.232.189/match/{{match_id}}"><h2>Match {{ match_id }}</h2></a>
-		        <h3>{{ match.match_date }}</h3>
+                <a href="http://159.89.232.189/match/{{match_id}}"><h2>Match {{ match_id }}</h2></a>
+                <h3>{{ match.match_date }}</h3>
                 <h3>Match duration: {{ match.match_duration }}</h3>
 
                 {% for team_id, team in match.teams.items %}
@@ -37,7 +37,7 @@
                                 <th>Summoner Name</th>
                                 <th>Champion Name</th>
                                 <th>KDA</th>
-    				            <th class="sorttable_nosort"></th>
+                                <th class="sorttable_nosort"></th>
                                 <th>Match Influence Score</th>
                                 <th>Carry %</th>
                                 <th>Tank %</th>
