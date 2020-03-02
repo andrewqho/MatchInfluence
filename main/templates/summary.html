@@ -46,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for player in team.players %}
+                            {% for player in team.players.all %}
                             <tr> 
     				            <td><a href="http://159.89.232.189/{{player.summoner_name}}">{{player.summoner_name}}</a></td>
                                 <td>{{ player.champion_name }}</td>
