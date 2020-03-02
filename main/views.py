@@ -60,10 +60,10 @@ def matchHistory(request, summoner_name, num_matches=20):
 
         matches[match_id] = {'match_info': match_info,
                              'teams': {'Red': { 'red_info': red_info,
-                                                'players': red_players
+                                                'players': red_players,
                                               },
                                       'Blue': {'blue_info': blue_info,
-                                               'players': blue_players
+                                               'players': blue_players,
                                               }
                                       }
                             }

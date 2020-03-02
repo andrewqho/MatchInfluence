@@ -30,6 +30,7 @@
                 {% for team_id, team in match.teams.items %}
                 <div>                    
                     <h3> {{ team_id }} Team </h3>
+                    <h3> {{ team.players.count }}
                     <table class="sortable"> 
                         <!-- Allows tables to be sorted -->
                         <thead>
@@ -45,7 +46,7 @@
                                 <th>Support %</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <!-- <tbody>
                             {% for player in team.players.all %}
                             <tr> 
     				            <td><a href="http://159.89.232.189/{{player.summoner_name}}">{{player.summoner_name}}</a></td>
@@ -63,7 +64,7 @@
                                 <td>{{ player.support }}%</td>
                             </tr> 
                             {% endfor %}  
-                        </tbody>
+                        </tbody> -->
                     </table>
                 </div>
                 {% endfor %}
