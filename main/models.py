@@ -17,7 +17,7 @@ class Team_model(models.Model):
     )
 
     team_id = models.CharField(max_length=4)
-    total_score = models.DecimalField(max_digits=10, decimal_places=2)
+    total_match_influence = models.DecimalField(max_digits=10, decimal_places=2)
     win = models.BooleanField()
 
     # ban1 = models.CharField(max_length=30)
