@@ -8,6 +8,8 @@ from main.match import Match
 import sys
 
 from main.models import Match_model
+from main.models import Team_model
+from main.models import Player_model
 
 APIKey = 'RGAPI-972d9b2d-544b-4eca-ad4f-ed2a6d459fb1'
 
