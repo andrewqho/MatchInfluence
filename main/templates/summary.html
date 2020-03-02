@@ -27,7 +27,7 @@
 		        <h3>{{ match.match_date }}</h3>
                 <h3>Match duration: {{ match.match_duration }}</h3>
 
-                {{% for team_id, team in match.teams.items%}}
+                {% for team_id, team in match.teams.items %}
                 <div>                    
                     <h3> {{ team_id }} Team </h3>
                     <table class="sortable"> 
