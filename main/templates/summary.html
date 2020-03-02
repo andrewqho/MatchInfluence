@@ -17,9 +17,6 @@
                 <input type="submit" value="Enter">
         </form>
         </div>
-        <div class="PlayerSummary">
-            
-        </div>
         <div class="Matches">
             {% for match_id, match in matches.items%}
             <div class="MatchEntry">
@@ -27,44 +24,9 @@
                 <h3>{{ match.match_date }}</h3>
                 <h3>Match duration: {{ match.match_duration }}</h3>
 
-                {% for team_id, team in match.teams.items %}
+                {% for team in match.teams.items %}
                 <div>                    
-                    <h3> {{ team_id }} Team </h3>
-                    <table class="sortable"> 
-                        <!-- Allows tables to be sorted -->
-                        <thead>
-                            <tr>
-                                <th>Summoner Name</th>
-                                <th>Champion Name</th>
-                                <th>KDA</th>
-                                <th class="sorttable_nosort"></th>
-                                <th>Match Influence Score</th>
-                                <th>Carry %</th>
-                                <th>Tank %</th>
-                                <th>Objective Control %</th>
-                                <th>Support %</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for player in team.players.all %}
-                            <tr> 
-                                <td><a href="http://159.89.232.189/{{player.summoner_name}}">{{player.summoner_name}}</a></td>
-                                <td>{{ player.champion_name }}</td>
-                                {% if player.kda == 'Perfect' %}
-                                    <td sorttable_customkey="1000">Perfect</td>
-                                {% else %}
-                                    <td>{{player.kda}}</td>
-                                {% endif %}
-                                <td>{{ player.kills_actual }} / {{ player.deaths_actual }} / {{ player.assists_actual }}</td>
-                                <td>{{ player.match_influence }}</td>
-                                <td>{{ player.carry }}</td>
-                                <td>{{ player.tank }}</td>
-                                <td>{{ player.objectives }}</td>
-                                <td>{{ player.support }}%</td>
-                            </tr> 
-                            {% endfor %}  
-                        </tbody>
-                    </table>
+                    <h3> {{ team.team_id }} Team </h3>
                 </div>
                 {% endfor %}
             </div>

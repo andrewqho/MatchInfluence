@@ -52,20 +52,15 @@ def matchHistory(request, summoner_name, num_matches=10):
 
             match_info = Match_model.objects.get(match_id=match_id)
 
-        red_info = Team_model.objects.get(match=match_info, team_id='Red')
-        blue_info = Team_model.objects.get(match=match_info, team_id='Blue')
+        teams = match_info.teams.all()
+        # red_info = Team_model.objects.get(match=match_info, team_id='Red')
+        # blue_info = Team_model.objects.get(match=match_info, team_id='Blue')
 
-        red_players = red_info.players.all()
-        blue_players = blue_info.players.all()
+        # red_players = red_info.players.all()
+        # blue_players = blue_info.players.all()
 
         matches[match_id] = {'match_info': match_info,
-                             'teams': {'Red': { 'red_info': red_info,
-                                                'players': red_players,
-                                              },
-                                      'Blue': {'blue_info': blue_info,
-                                               'players': blue_players,
-                                              }
-                                      }
+                             'teams': teams
                             }
     
     return render(request, 'summary.html', {'num_matches': num_matches, 'matches': matches})
