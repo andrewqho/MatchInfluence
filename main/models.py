@@ -6,17 +6,18 @@ class Summoner_model(models.Model):
 class Match_model(models.Model):
     match_id = models.BigIntegerField()
     match_date = models.DateField()
-    match_duration = models.DecimalField(max_digits=10,decimal_places=2)
+    match_duration = models.DurationField()
 
 class Team_model(models.Model): 
     # Every team belongs to a match
     match = models.ForeignKey(
-        'Match_model',
+        Match_model,
+        related_name='teams',
         on_delete=models.CASCADE,
     )
 
     team_id = models.CharField(max_length=4)
-    total_match_influence = models.DecimalField(max_digits=10, decimal_places=2)
+    total_score = models.DecimalField(max_digits=10, decimal_places=2)
     win = models.BooleanField()
 
     # ban1 = models.CharField(max_length=30)
@@ -35,7 +36,8 @@ class Team_model(models.Model):
 class Player_model(models.Model):
     # Each player belongs to a team
     team = models.ForeignKey(
-        'Team_model',
+        Team_model,
+        related_name='players',
         on_delete=models.CASCADE,
     )
 

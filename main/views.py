@@ -41,17 +41,31 @@ def matchHistory(request, summoner_name, num_matches=20):
         timestamp = match['timestamp']
        
         try:
-            match_entry = Match_model.objects.get(match_id=match_id)
+            match_info = Match_model.objects.get(match_id=match_id)
         except:
             raw_match_data = fetcher.requestMatchDetails(match_id)
             new_match = Match(match_id, raw_match_data, timestamp)
             new_match.runCalculations()
             new_match.save_entry()
 
-            match_entry = Match_model.objects.get(match_id=match_id)
+            match_info = Match_model.objects.get(match_id=match_id)
 
-        matches[match_id] = match_entry
+        red_info = Team_model.objects.filter(match=match, team_id='Red')
+        blue_info = Team_model.objects.filter(match=match, team_id='Blue')
 
+        red_players = Player_model.objects.filter(team=red_info)
+        blue_players = Player_model.objects.filter(team=blue_info)
+
+        matches[match_id] = {'match_info': match_info,
+                             'teams': {'Red': { 'red_info': red_info,
+                                                     'players': red_players
+                                                   },
+                                      'Blue': {'blue_info': blue_info,
+                                                    'players': red_players
+                                                   }
+                                      }
+                            }
+    
     return render(request, 'summary.html', {'num_matches': num_matches, 'matches': matches})
 
 

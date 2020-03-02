@@ -7,65 +7,65 @@
     </head>
     <body>
         <div id="header">
-	    <a href="http://159.89.232.189/"><h1>Match Influence Calculator</h1></a>
+        <a href="http://159.89.232.189/"><h1>Match Influence Calculator</h1></a>
         </div>
         <div id="search">
             <p>Enter Summoner Name:</p>
             <form action="/summoner/" method="post" accept-charset="utf-8" onsubmit="this.action+=this.querySelector('input[type=text]'+="/").value">
                 {% csrf_token %}
-		<input type="text" name="summoner_name">
+        <input type="text" name="summoner_name">
                 <input type="submit" value="Enter">
         </form>
-        </div>	
+        </div>    
         <div class="MatchDetails">
             {% for match_id, match in matches.items%}
             <div class="MatchEntry">
-		<h2>Match {{ match_id }}</h2>
-                
-		<h3>{{ match.match_time }}</h3>
-                {% for team_id, team in match.teams.items%}
-                <div>                    
-                    <h3>{{ team_id }} Team</h3>
-                    <table class="sortable"> 
-                        <!-- Allows tables to be sorted -->
-                        <thead>
-                            <tr>
-                                <th>Summoner Name</th>
-                                <th>Champion Name</th>
-                                <th>KDA</th>
-				<th class="sorttable_nosort"></th>
-                                <th>Match Influence Score</th>
-                                <th>Carry %</th>
-                                <th>Tank %</th>
-                                <th>Objective Control %</th>
-                                <th>Support %</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for player_id, player in team.players.items%}
-                            <tr> 
-				<td><a href="http://159.89.232.189/{{player.summoner_name}}">{{player.summoner_name}}</a></td>
-                                <td>{{ player.champion_name }}</td>
-                                {% if player.kda == 'Perfect' %}
-                                    <td sorttable_customkey="1000">Perfect</td>
-                                {% else %}
-                                    <td>{{player.kda}}</td>
-                                {% endif %}
-                                <td>{{ player.kills_actual }} / {{ player.deaths_actual }} / {{ player.assists_actual }}</td>
-                                <td>{{ player.score }}</td>
-                                <td>{{ player.carry }}</td>
-                                <td>{{ player.tank }}</td>
-                                <td>{{ player.objectives }}</td>
-                                <td>{{ player.support }}%</td>
-                            </tr> 
-                            {% endfor %}  
-                            </tbody>
-                    </table>
+              <h2>Match {{ match_id }}</h2>
                     
+              <h3>{{ match.match_time }}</h3>
+                    {% for team_id, team in match.teams.items%}
+                    <div>                    
+                        <h3>{{ team_id }} Team</h3>
+                        <table class="sortable"> 
+                            <!-- Allows tables to be sorted -->
+                            <thead>
+                                <tr>
+                                    <th>Summoner Name</th>
+                                    <th>Champion Name</th>
+                                    <th>KDA</th>
+                    <th class="sorttable_nosort"></th>
+                                    <th>Match Influence Score</th>
+                                    <th>Carry %</th>
+                                    <th>Tank %</th>
+                                    <th>Objective Control %</th>
+                                    <th>Support %</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for player_id, player in team.players.items%}
+                                <tr> 
+                    <td><a href="http://159.89.232.189/{{player.summoner_name}}">{{player.summoner_name}}</a></td>
+                                    <td>{{ player.champion_name }}</td>
+                                    {% if player.kda == 'Perfect' %}
+                                        <td sorttable_customkey="1000">Perfect</td>
+                                    {% else %}
+                                        <td>{{player.kda}}</td>
+                                    {% endif %}
+                                    <td>{{ player.kills_actual }} / {{ player.deaths_actual }} / {{ player.assists_actual }}</td>
+                                    <td>{{ player.score }}</td>
+                                    <td>{{ player.carry }}</td>
+                                    <td>{{ player.tank }}</td>
+                                    <td>{{ player.objectives }}</td>
+                                    <td>{{ player.support }}%</td>
+                                </tr> 
+                                {% endfor %}  
+                                </tbody>
+                        </table>
+                        
+                    </div>
+                    {% endfor %}
                 </div>
                 {% endfor %}
             </div>
-            {% endfor %}
-        </div>
-    </body>
-</html>
+        </body>
+    </html>

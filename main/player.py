@@ -37,12 +37,13 @@ class Player:
 
         self.match_influence = math.pow(self.match_influence, 1.25)
 
-    def save_entry(self, team_obj):
+    def save_entry(self, team_id, match_id):
         with open('main/assets/id_to_champ.txt') as json_file:
             id_to_champ = json.load(json_file)
 
         player_entry = Player_model(
-            team=team_obj,
+            match_id=match_id,
+            team_id=team_id,
             player_id=self.player_id,
             summoner_name=self.summoner_name,
             champion_name=id_to_champ[str(self.info['champion_id'])],

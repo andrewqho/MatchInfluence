@@ -78,10 +78,10 @@ class Team:
                 for player_id, player in self.players.items():
                     player.metrics[metric] = player.metrics[metric] / total
 
-    def save_entry(self, match_obj):
+    def save_entry(self, match_id):
 
         team_entry = Team_model(
-            match=match_obj,
+            match_id=match_id,
             team_id=self.team_id,
             total_match_influence=self.total_match_influence,
             win=self.info['win'],
