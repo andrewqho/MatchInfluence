@@ -11,7 +11,7 @@ from main.models import Match_model
 from main.models import Team_model
 from main.models import Player_model
 
-APIKey = 'RGAPI-972d9b2d-544b-4eca-ad4f-ed2a6d459fb1'
+APIKey = 'RGAPI-79bee614-be0a-4034-8e2d-d85f55d40be6'
 
 def verify(request):
     f = open('main/static.riot.txt', 'r')
@@ -25,7 +25,7 @@ def search(request):
 def matchDetails(request, match_id):
     return render(request, 'search.html')
 
-def matchHistory(request, summoner_name, num_matches=20):
+def matchHistory(request, summoner_name, num_matches=10):
     fetcher = Fetcher(APIKey)
 
     # Request summoner data
@@ -55,8 +55,8 @@ def matchHistory(request, summoner_name, num_matches=20):
         red_info = Team_model.objects.get(match=match_info, team_id='Red')
         blue_info = Team_model.objects.get(match=match_info, team_id='Blue')
 
-        red_players = Player_model.objects.filter(team=red_info)
-        blue_players = Player_model.objects.filter(team=blue_info)
+        red_players = red_info.players.all()
+        blue_players = blue_info.players.all()
 
         matches[match_id] = {'match_info': match_info,
                              'teams': {'Red': { 'red_info': red_info,
