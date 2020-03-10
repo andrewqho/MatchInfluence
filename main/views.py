@@ -7,7 +7,7 @@ from main.fetcher import Fetcher
 from main.match import Match
 import sys
 
-APIKey = 'RGAPI-972d9b2d-544b-4eca-ad4f-ed2a6d459fb1'
+APIKey = 'RGAPI-a6d3fb9d-38b1-485c-bafa-e72530078ccc'
 
 def verify(request):
     f = open('main/static.riot.txt', 'r')
